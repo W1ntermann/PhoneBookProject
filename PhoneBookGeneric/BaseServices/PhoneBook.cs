@@ -20,7 +20,7 @@ public class PhoneBook<T> where T : Subscriber
         _logger.Log("New Sub Has Been Added !");
     }
 
-    public void DisplayByCity(string city)
+    public void DisplayByCity(string? city)
     {
         var filtered = _repository.Find(s => s.City == city);
 
@@ -45,5 +45,11 @@ public class PhoneBook<T> where T : Subscriber
         {
             Console.WriteLine(subscriber);
         }
+    }
+
+    public void Remove(string? name)
+    {
+        _repository.Remove(s => s.Name == name);
+        _logger.Log($"Subscriber by {name} has been removed");
     }
 }

@@ -19,4 +19,9 @@ public class InMemoryRepository<T> : IRepository<T>
         return _items
             .Where(predicate);
     }
+
+    public void Remove(Func<T, bool> predicate)
+    {
+        _items.RemoveAll(item => predicate(item));
+    }
 }
