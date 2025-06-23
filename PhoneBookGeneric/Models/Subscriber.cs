@@ -3,11 +3,11 @@ namespace PhoneBookGeneric.Models;
 public class Subscriber
 {
     public int Id { get; set; }
-    public string? Name { get; set; }
-    public string? LastName { get; set; }
-    public string? Country { get; set; }
-    public string? City { get; set; }
-    public string? PhoneNumber { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Country { get; set; } = string.Empty;
+    public string City { get; set; } = string.Empty;
+    public string PhoneNumber { get; set; } = string.Empty;
 
     public override string ToString()
     {

@@ -6,4 +6,5 @@ public interface IRepository<T>
     IEnumerable<T> GetAll();
     IEnumerable<T> Find(Func<T, bool> predicate);
     void Remove(Func<T, bool> predicate);
+    
 }

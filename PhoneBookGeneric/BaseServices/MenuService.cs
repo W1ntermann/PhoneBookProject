@@ -13,6 +13,7 @@ public class MenuService
 
     public void Start()
     {
+        
         while (true)
         {
             Console.WriteLine("\nМеню:");

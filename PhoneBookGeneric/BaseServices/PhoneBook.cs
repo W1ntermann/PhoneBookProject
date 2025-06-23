@@ -46,7 +46,7 @@ public class PhoneBook<T> where T : Subscriber
             Console.WriteLine(subscriber);
         }
     }
-
+    
     public void Remove(string? name)
     {
         _repository.Remove(s => s.Name == name);
