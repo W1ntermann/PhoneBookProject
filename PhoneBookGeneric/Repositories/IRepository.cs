@@ -1,10 +1,12 @@
+using System.Linq.Expressions;
+
 namespace PhoneBookGeneric.Repositories;
 
-public interface IRepository<T>
+public interface IRepository<T> where T : class
 {
-    void Add(T item);
-    IEnumerable<T> GetAll();
-    IEnumerable<T> Find(Func<T, bool> predicate);
-    void Remove(Func<T, bool> predicate);
+    Task Add(T item);
+    Task<IEnumerable<T>> GetAllAsync();
+    Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+    Task RemoveAsync(Expression<Func<T, bool>> predicate);
     
 }

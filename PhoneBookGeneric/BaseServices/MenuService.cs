@@ -11,7 +11,7 @@ public class MenuService
         _book = book;
     }
 
-    public void Start()
+    public async Task Start()
     {
         
         while (true)
@@ -37,20 +37,20 @@ public class MenuService
                     subscriber.PhoneNumber = Console.ReadLine();
                     Console.Write("Місто: ");
                     subscriber.City = Console.ReadLine();
-                    _book.AddSubscriber(subscriber);
+                    await _book.AddSubscriberAsync(subscriber);
                     break;
                 case "2":
-                    _book.Get();
+                    await _book.Get();
                     break;
                 case "3":
                     Console.Write("Введіть місто: ");
                     var city = Console.ReadLine();
-                    _book.DisplayByCity(city);
+                    await _book.DisplayByCity(city);
                     break;
                 case "4":
                     Console.Write("Введіть ім’я: ");
                     var name = Console.ReadLine();
-                    _book.Remove(name);
+                   await _book.RemoveAsync(name);
                     break;
                 case "0":
                     return;

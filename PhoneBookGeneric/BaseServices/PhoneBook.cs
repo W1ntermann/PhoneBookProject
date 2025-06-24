@@ -14,42 +14,44 @@ public class PhoneBook<T> where T : Subscriber
         _logger = logger;
     }
 
-    public void AddSubscriber(T subscriber)
+    public async Task AddSubscriberAsync(T subscriber)
     {
-        _repository.Add(subscriber);
+        await _repository.Add(subscriber);
         _logger.Log("New Sub Has Been Added !");
     }
 
-    public void DisplayByCity(string? city)
+    public async Task DisplayByCity(string? city)
     {
-        var filtered = _repository.Find(s => s.City == city);
+        var subscribers = (await _repository.FindAsync(s => s.City == city)).ToList();
 
-        var subscribers = filtered.ToList();
         if (!subscribers.Any())
         {
-            _logger.Log($"There are no subscribers in that city {city}");
+            _logger.Log($"There are no subscribers in city: {city}");
             return;
         }
-        
+
         foreach (var subscriber in subscribers)
         {
             Console.WriteLine(subscriber);
         }
     }
 
-    public void Get()
+    public async Task Get()
     {
-        var subscribers = _repository.GetAll();
+        _logger.Log("Getting subscriber....s");
+
+        var subscribers = await _repository.GetAllAsync();
 
         foreach (var subscriber in subscribers)
         {
             Console.WriteLine(subscriber);
         }
+
     }
     
-    public void Remove(string? name)
+    public async Task RemoveAsync(string? name)
     {
-        _repository.Remove(s => s.Name == name);
+        await _repository.RemoveAsync(s => s.Name == name);
         _logger.Log($"Subscriber by {name} has been removed");
     }
 }

@@ -1,28 +1,28 @@
+using System.Linq.Expressions;
+
 namespace PhoneBookGeneric.Repositories;
 
-public class InMemoryRepository<T> : IRepository<T>
+public class InMemoryRepository<T> : IRepository<T> where T : class
 {
     private readonly List<T> _items = new();
-    
-    public void Add(T item)
+
+    public Task Add(T item)
     {
-        _items.Add(item);
+        throw new NotImplementedException();
     }
 
-    public IEnumerable<T> GetAll()
+    public Task<IEnumerable<T>> GetAllAsync()
     {
-        return _items;
+        throw new NotImplementedException();
     }
 
-    public IEnumerable<T> Find(Func<T, bool> predicate)
+    public Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
     {
-        return _items
-            .Where(predicate);
+        throw new NotImplementedException();
     }
 
-    public void Remove(Func<T, bool> predicate)
+    public Task RemoveAsync(Expression<Func<T, bool>> predicate)
     {
-        _items.RemoveAll(item => predicate(item));
+        throw new NotImplementedException();
     }
-    
 }
