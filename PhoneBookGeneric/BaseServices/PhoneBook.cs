@@ -38,7 +38,7 @@ public class PhoneBook<T> where T : Subscriber
 
     public async Task Get()
     {
-        _logger.Log("Getting subscriber....s");
+        _logger.Log("Getting subscribers....");
 
         var subscribers = await _repository.GetAllAsync();
 

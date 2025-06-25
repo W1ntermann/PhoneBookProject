@@ -16,13 +16,13 @@ public class MenuService
         
         while (true)
         {
-            Console.WriteLine("\nМеню:");
-            Console.WriteLine("1. Додати абонента");
-            Console.WriteLine("2. Вивести всіх");
-            Console.WriteLine("3. Пошук за містом");
-            Console.WriteLine("4. Видалити абонента за ім’ям");
-            Console.WriteLine("0. Вихід");
-            Console.Write("Вибір: ");
+            Console.WriteLine("\nMenu:");
+            Console.WriteLine("1. Add new Subscriber");
+            Console.WriteLine("2. Get All Subscribers");
+            Console.WriteLine("3. Search by city");
+            Console.WriteLine("4. Delete Subscriber by name");
+            Console.WriteLine("0. Exit");
+            Console.Write("Choice: ");
 
             var choice = Console.ReadLine();
             Console.WriteLine();
@@ -31,11 +31,11 @@ public class MenuService
             {
                 case "1":
                     var subscriber = new Subscriber();
-                    Console.Write("Ім’я: ");
+                    Console.Write("Name: ");
                     subscriber.Name = Console.ReadLine();
-                    Console.Write("Телефон: ");
+                    Console.Write("Phone: ");
                     subscriber.PhoneNumber = Console.ReadLine();
-                    Console.Write("Місто: ");
+                    Console.Write("City: ");
                     subscriber.City = Console.ReadLine();
                     await _book.AddSubscriberAsync(subscriber);
                     break;
@@ -43,19 +43,19 @@ public class MenuService
                     await _book.Get();
                     break;
                 case "3":
-                    Console.Write("Введіть місто: ");
+                    Console.Write("Enter city: ");
                     var city = Console.ReadLine();
                     await _book.DisplayByCity(city);
                     break;
                 case "4":
-                    Console.Write("Введіть ім’я: ");
+                    Console.Write("Enter name: ");
                     var name = Console.ReadLine();
                    await _book.RemoveAsync(name);
                     break;
                 case "0":
                     return;
                 default:
-                    Console.WriteLine("Невідомий вибір.");
+                    Console.WriteLine("Unknown choice.");
                     break;
             }
         }

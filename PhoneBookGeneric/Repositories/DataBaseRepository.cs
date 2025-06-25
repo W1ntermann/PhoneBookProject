@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using PhoneBookGeneric.Models;
 
 namespace PhoneBookGeneric.Repositories;
@@ -14,6 +15,7 @@ public class DataBaseRepository<T> : IRepository<T> where T : class
         _dbContext = dbContext;
         _dbSet = _dbContext.Set<T>();
     }
+
     public async Task Add(T item)
     {
         await _dbSet.AddAsync(item);
@@ -37,5 +39,12 @@ public class DataBaseRepository<T> : IRepository<T> where T : class
         var items = await _dbSet.Where(predicate).ToListAsync();
         _dbSet.RemoveRange(items);
         await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task<int> UpdateAsync(Expression<Func<T, bool>> predicate, Expression<Func<SetPropertyCalls<T>, SetPropertyCalls<T>>> update)
+    {
+        return await _dbSet
+            .Where(predicate)
+            .ExecuteUpdateAsync(update);
     }
 }
